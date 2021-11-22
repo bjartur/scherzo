@@ -121,6 +121,9 @@ common scherzo-dep
 
 library
     import: common, megaparsec-dep
+    build-depends:
+        hashable ^>=0.4,
+        unordered-containers ^>=0.2.15
     exposed-modules:
         Alma.Parser
     hs-source-dirs: lib
