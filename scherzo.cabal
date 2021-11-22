@@ -23,6 +23,7 @@ license-file: LICENSE
 author: Aura Kelloniemi
 maintainer: kaura.dev@sange.fi
 extra-source-files:
+    AUTHORS.md
     CHANGELOG.md
     README.md
 
