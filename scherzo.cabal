@@ -1,0 +1,124 @@
+cabal-version: 3.0
+name: scherzo
+version: 0.1.0.0
+synopsis: Music notation toolbox
+description:
+    Tools for working with music notation written in the Alma language
+homepage: https://github.com/Merivuokko/scherzo
+license: GPL-3.0-only
+license-file: LICENSE
+author: Aura Kelloniemi
+maintainer: kaura.dev@sange.fi
+extra-source-files: CHANGELOG.md
+
+flag Werror
+    description: Enable -Werror for fixing all warnings
+    default: False
+    manual: True
+
+flag Weverything
+    description: Enable almost every possible warning
+    default: False
+    manual: True
+
+common common
+    build-depends:
+        base >=4.15 && <4.17,
+        text ^>=1.2
+
+    default-extensions: NoStarIsType
+    other-extensions: OverloadedStrings
+    if impl(ghc >= 9.2)
+        default-language: GHC2021
+    else
+        -- We are restricted to Haskell2010 language set by default. We thus
+        -- enable all extensions of the later GHC language sets manually. Many
+        -- of these probably are not used, but it is better to enable them
+        -- here (just in case) than listing all extensions in module headers.
+        default-language: Haskell2010
+        default-extensions:
+            BangPatterns,
+            BinaryLiterals,
+            ConstrainedClassMethods,
+            ConstraintKinds,
+            DeriveDataTypeable,
+            DeriveFoldable,
+            DeriveFunctor,
+            DeriveGeneric,
+            DeriveLift,
+            DeriveTraversable,
+            EmptyCase,
+            EmptyDataDeriving,
+            ExistentialQuantification,
+            ExplicitForAll,
+            FlexibleContexts,
+            FlexibleInstances,
+            GADTSyntax,
+            GeneralisedNewtypeDeriving,
+            HexFloatLiterals,
+            ImportQualifiedPost,
+            InstanceSigs,
+            KindSignatures,
+            MultiParamTypeClasses,
+            NamedFieldPuns,
+            NamedWildCards,
+            NumericUnderscores,
+            PolyKinds,
+            PostfixOperators,
+            RankNTypes,
+            ScopedTypeVariables,
+            StandaloneDeriving,
+            StandaloneKindSignatures,
+            TupleSections,
+            TypeApplications,
+            TypeOperators,
+            TypeSynonymInstances
+
+    ghc-options:
+        -fshow-warning-groups
+
+    if flag(Werror)
+        ghc-options:
+            -Werror
+
+    if flag(Weverything)
+        ghc-options:
+            -Weverything
+            -Wno-all-missed-specialisations
+            -Wno-implicit-prelude
+            -Wno-missed-specialisations
+            -Wno-missing-import-lists
+            -Wno-missing-safe-haskell-mode
+            -Wno-monomorphism-restriction
+            -Wno-safe
+            -Wno-unsafe
+    else
+        ghc-options: -Wall -Wcompat
+
+common megaparsec-dep
+   build-depends:
+        megaparsec ^>=9
+
+common scherzo-dep
+    build-depends:
+        scherzo
+
+library
+    import: common, megaparsec-dep
+    exposed-modules:
+        Alma.Parser
+    hs-source-dirs: lib
+
+executable alma2ly
+    import: common, megaparsec-dep, scherzo-dep
+    main-is: Main.hs
+    build-depends:
+        bytestring ^>=0.11,
+        scherzo
+    hs-source-dirs: src/alma2ly
+
+test-suite scherzo-test
+    import: common, scherzo-dep
+    type: exitcode-stdio-1.0
+    hs-source-dirs: test
+    main-is: Main.hs
