@@ -12,8 +12,8 @@ description:
     The plan is to support translating Alma to and from various other music
     notation formats – especially LilyPond. Alma is supposed to be easier
     to type, edit and read than Lilypond. THe language syntax is configurable
-    it supports laying out simultaneously played sections of music visually
-    together.
+    and it supports laying out simultaneously played sections of music so that
+    they are visually aligned.
 
     Alma is expected to be especially convenient for composers and
     people using braille.
