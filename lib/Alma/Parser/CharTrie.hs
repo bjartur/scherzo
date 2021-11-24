@@ -6,6 +6,7 @@ module Alma.Parser.CharTrie
     (CharTrie,
     empty,
     insert,
+    keys,
     lookup,
     null)
 where
@@ -47,3 +48,6 @@ lookup !key (CharTrie trie) = M.lookup key trie
 
 null :: forall a. CharTrie a -> Bool
 null (CharTrie trie) = M.null trie
+
+keys :: forall a. CharTrie a -> [Char]
+keys (CharTrie t) = M.keys t
