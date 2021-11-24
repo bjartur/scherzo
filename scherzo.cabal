@@ -39,7 +39,7 @@ flag Weverything
 
 common common
     build-depends:
-        base ^>= { 4.15, 4.16 }
+        base ^>= { 4.15, 4.16 },
         text ^>=1.2
 
     default-extensions: NoStarIsType
