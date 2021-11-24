@@ -126,6 +126,8 @@ library
         unordered-containers ^>=0.2.15
     exposed-modules:
         Alma.Parser
+    other-modules:
+        Alma.Parser.CharTrie
     hs-source-dirs: lib
 
 executable alma2ly
