@@ -3,21 +3,16 @@
 module Alma.Parser
     (Parser,
      parseMusic)
-  where
+where
 
 import Control.Applicative hiding (some)
 import Control.Monad (void)
 import Data.Char
-import Data.Kind (Type)
-import Data.Void (Void)
--- import Data.Text qualified as T
 import Data.Text (Text)
 import Text.Megaparsec
 import Text.Megaparsec.Char
--- import Text.Megaparsec.Char.Lexer qualified as L
 
-type Parser :: Type -> Type
-type Parser = Parsec Void Text
+import Alma.Parser.Types
 
 -- | Space consumer parser
 skipSpace :: Parser ()

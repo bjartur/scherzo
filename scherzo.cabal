@@ -127,7 +127,8 @@ library
     exposed-modules:
         Alma.Parser
     other-modules:
-        Alma.Parser.CharTrie
+        Alma.Parser.CharTrie,
+        Alma.Parser.Types
     hs-source-dirs: lib
 
 executable alma2ly
