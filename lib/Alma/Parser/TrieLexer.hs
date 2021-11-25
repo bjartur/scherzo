@@ -37,6 +37,8 @@ parseWithTrie !trie
     errorOut !ch !t
         = failure (Just $! Tokens $! ch :| []) expectedTokens
       where
+        expectedTokens :: Set.Set (ErrorItem Char)
+        {-# INLINEABLE expectedTokens #-}
         expectedTokens = if
             | CT.null t -> error $! "Programming error: Dead end in parsing trie"
             | otherwise -> Set.singleton $! Tokens $! NL.fromList $! CT.keys t
