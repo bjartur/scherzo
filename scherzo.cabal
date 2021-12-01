@@ -26,6 +26,7 @@ extra-source-files:
     AUTHORS.md
     CHANGELOG.md
     README.md
+    .hlint.yaml
 
 flag Werror
     description: Enable -Werror for fixing all warnings
