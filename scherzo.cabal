@@ -28,6 +28,10 @@ extra-source-files:
     README.md
     .hlint.yaml
 
+source-repository head
+    type: git
+    location: https://github.com/Merivuokko/scherzo
+                      
 flag Werror
     description: Enable -Werror for fixing all warnings
     default: False
