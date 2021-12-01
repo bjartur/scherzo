@@ -21,7 +21,7 @@ import Data.Text qualified as T
 
 type CharTrie :: Type -> Type
 newtype CharTrie a = CharTrie {
-    unCharTrie :: (M.HashMap Char (Maybe a, CharTrie a))
+    unCharTrie :: M.HashMap Char (Maybe a, CharTrie a)
     } deriving newtype (Eq, Hashable, Monoid, Ord, Semigroup)
       deriving stock (Foldable, Functor, Read, Show, Traversable)
 

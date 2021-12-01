@@ -1,5 +1,3 @@
-{-# LANGUAGE MultiWayIf #-}
-
 -- | Parse a music token using a CharTrie
 
 module Alma.Parser.TrieLexer
@@ -39,6 +37,7 @@ parseWithTrie !trie
       where
         expectedTokens :: Set.Set (ErrorItem Char)
         {-# INLINEABLE expectedTokens #-}
-        expectedTokens = if
-            | CT.null t -> error $! "Programming error: Dead end in parsing trie"
-            | otherwise -> Set.singleton $! Tokens $! NL.fromList $! CT.keys t
+        expectedTokens =
+            if CT.null t
+            then error $! "Programming error: Dead end in parsing trie"
+            else Set.singleton $! Tokens $! NL.fromList $! CT.keys t
