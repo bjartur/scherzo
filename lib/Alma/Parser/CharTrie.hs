@@ -1,10 +1,10 @@
 {-# LANGUAGE StrictData #-}
 {-# LANGUAGE DerivingStrategies #-}
 
-
 module Alma.Parser.CharTrie
     (CharTrie,
     empty,
+    fromList,
     insert,
     keys,
     lookup,
@@ -42,6 +42,11 @@ insert !key !val !rootTrie = snd $! go key rootTrie
                   in (childVal, newCurTrie)
               Nothing ->
                   (Just val, curTrie)
+
+fromList :: forall a. [(Text, a)] -> CharTrie a
+fromList [] = empty
+fromList (key, val) : xs = insert key val $! fromList xs
+
 
 lookup :: forall a. Char -> CharTrie a -> Maybe (Maybe a, CharTrie a)
 lookup !key (CharTrie trie) = M.lookup key trie
