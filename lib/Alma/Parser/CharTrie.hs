@@ -45,7 +45,7 @@ insert !key !val !rootTrie = snd $! go key rootTrie
 
 fromList :: forall a. [(Text, a)] -> CharTrie a
 fromList [] = empty
-fromList (key, val) : xs = insert key val $! fromList xs
+fromList ((key, val) : xs) = insert key val $! fromList xs
 
 
 lookup :: forall a. Char -> CharTrie a -> Maybe (Maybe a, CharTrie a)
